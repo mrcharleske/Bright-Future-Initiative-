@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Bright Future Initiative</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'royal-blue': '#1e3a8a',
+                        'navy-blue': '#1e40af',
+                        'light-blue': '#3b82f6',
+                        'gold': '#fbbf24',
+                        'dark-gold': '#f59e0b',
+                        'light-gold': '#fde047'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #1e3a8a 100%);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(251, 191, 36, 0.3);
+        }
+        
+        .btn-secondary {
+            border: 2px solid #fbbf24;
+            color: #fbbf24;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: #fbbf24;
+            color: #1e3a8a;
+            transform: translateY(-2px);
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background-color: #fbbf24;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+            left: 0;
+        }
+        
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .floating-cta {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #e5e7eb, transparent);
+        }
+        
+        .gold-accent {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .contact-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .form-input {
+            transition: all 0.3s ease;
+            border: 2px solid #e5e7eb;
+        }
+        
+        .form-input:focus {
+            border-color: #fbbf24;
+            box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+            outline: none;
+        }
+        
+        .form-label {
+            transition: all 0.3s ease;
+        }
+        
+        .form-group {
+            position: relative;
+        }
+        
+        .form-input:focus + .form-label,
+        .form-input:not(:placeholder-shown) + .form-label {
+            transform: translateY(-1.5rem) scale(0.85);
+            color: #fbbf24;
+        }
+        
+        .floating-label {
+            position: absolute;
+            left: 1rem;
+            top: 1rem;
+            pointer-events: none;
+            transform-origin: left top;
+            transition: all 0.3s ease;
+            background: white;
+            padding: 0 0.25rem;
+        }
+        
+        .success-message {
+            background: linear-gradient(135deg, #10b981, #059669);
+            transform: translateY(-100px);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+        
+        .success-message.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .map-container {
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            border-radius: 1.5rem;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .map-placeholder {
+            height: 300px;
+            display: flex;
+            items-center;
+            justify-content: center;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .office-hours {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+        }
+        
+        .social-link {
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-3px) scale(1.1);
+        }
+    </style>
+</head>
+<body class="font-sans">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <h1 class="text-2xl font-bold text-royal-blue">Bright Future Initiative</h1>
+                    </div>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="nav-link text-gray-700 hover:text-royal-blue px-3 py-2 text-sm font-medium">Home</a>
+                        <a href="about.html" class="nav-link text-gray-700 hover:text-royal-blue px-3 py-2 text-sm font-medium">About</a>
+                        <a href="programs.html" class="nav-link text-gray-700 hover:text-royal-blue px-3 py-2 text-sm font-medium">Programs</a>
+                        <a href="impact.html" class="nav-link text-gray-700 hover:text-royal-blue px-3 py-2 text-sm font-medium">Impact</a>
+                        <a href="contact.html" class="nav-link text-royal-blue font-semibold px-3 py-2 text-sm">Contact</a>
+                        <button class="btn-primary text-royal-blue px-6 py-2 rounded-full text-sm font-medium">Donate Now</button>
+                    </div>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-royal-blue focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu md:hidden fixed top-16 right-0 w-64 h-full bg-white shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-royal-blue">Home</a>
+                <a href="about.html" class="block px-3 py-2 text-gray-700 hover:text-royal-blue">About</a>
+                <a href="programs.html" class="block px-3 py-2 text-gray-700 hover:text-royal-blue">Programs</a>
+                <a href="impact.html" class="block px-3 py-2 text-gray-700 hover:text-royal-blue">Impact</a>
+                <a href="contact.html" class="block px-3 py-2 text-royal-blue font-semibold">Contact</a>
+                <button class="btn-primary text-royal-blue px-6 py-2 rounded-full text-sm font-medium ml-3 mt-4">Donate Now</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Success Message -->
+    <div id="success-message" class="success-message fixed top-20 left-1/2 transform -translate-x-1/2 z-50 px-6 py-4 rounded-2xl text-white font-semibold shadow-lg">
+        <div class="flex items-center">
+            <i class="fas fa-check-circle mr-3 text-xl"></i>
+            <span>Message sent successfully! We'll get back to you soon.</span>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg py-20 pt-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center" data-aos="fade-up">
+                <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
+                    Get in <span class="text-gold">Touch</span>
+                </h1>
+                <p class="text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
+                    Ready to make a difference? We'd love to hear from you. Whether you want to volunteer, partner with us, or learn more about our programs, we're here to help.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Methods -->
+    <section class="bg-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-royal-blue mb-4">
+                    Multiple Ways to <span class="gold-accent">Connect</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Choose the method that works best for you. We're available through various channels to ensure you can reach us easily.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Phone Contact -->
+                <div data-aos="fade-up" data-aos-delay="100" class="contact-card rounded-3xl p-8 text-center bg-gradient-to-br from-royal-blue to-navy-blue text-white">
+                    <div class="w-20 h-20 bg-gold rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-phone text-3xl text-royal-blue"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Call Us</h3>
+                    <p class="text-gray-200 mb-4">Speak directly with our team</p>
+                    <a href="tel:+254720286453" class="text-gold font-bold text-lg hover:text-light-gold transition-colors">
+                        +254 720 286 453
+                    </a>
+                    <p class="text-sm text-gray-300 mt-2">Mon-Fri: 8AM-6PM</p>
+                </div>
+                
+                <!-- WhatsApp Contact -->
+                <div data-aos="fade-up" data-aos-delay="200" class="contact-card rounded-3xl p-8 text-center bg-gradient-to-br from-green-600 to-green-700 text-white">
+                    <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fab fa-whatsapp text-3xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">WhatsApp</h3>
+                    <p class="text-gray-200 mb-4">Quick messages & updates</p>
+                    <a href="https://wa.me/254720286453" target="_blank" rel="noopener noreferrer" class="text-white font-bold text-lg hover:text-gray-200 transition-colors">
+                        +254 720 286 453
+                    </a>
+                    <p class="text-sm text-gray-300 mt-2">Available 24/7</p>
+                </div>
+                
+                <!-- Email Contact -->
+                <div data-aos="fade-up" data-aos-delay="300" class="contact-card rounded-3xl p-8 text-center bg-gradient-to-br from-gold to-dark-gold text-white">
+                    <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-envelope text-3xl text-gold"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-royal-blue">Email Us</h3>
+                    <p class="text-gray-700 mb-4">Detailed inquiries welcome</p>
+                    <a href="mailto:info@brightfutureinitiative.org" class="text-royal-blue font-bold text-lg hover:text-navy-blue transition-colors">
+                        info@brightfutureinitiative.org
+                    </a>
+                    <p class="text-sm text-gray-600 mt-2">Response within 24hrs</p>
+                </div>
+                
+                <!-- Social Media -->
+                <div data-aos="fade-up" data-aos-delay="400" class="contact-card rounded-3xl p-8 text-center bg-gradient-to-br from-purple-600 to-purple-700 text-white">
+                    <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-share-alt text-3xl text-purple-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Follow Us</h3>
+                    <p class="text-gray-200 mb-4">Stay updated on social media</p>
+                    <div class="flex justify-center space-x-4">
+                        <a href="#" class="social-link text-white hover:text-gray-200">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="#" class="social-link text-white hover:text-gray-200">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="social-link text-white hover:text-gray-200">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="social-link text-white hover:text-gray-200">
+                            <i class="fab fa-linkedin-in text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form & Info -->
+    <section class="bg-gray-50 py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div data-aos="fade-right">
+                    <div class="bg-white rounded-3xl p-8 shadow-lg">
+                        <h3 class="text-3xl font-bold text-royal-blue mb-6">Send Us a Message</h3>
+                        <p class="text-gray-600 mb-8">
+                            Fill out the form below and we'll get back to you as soon as possible. We value every inquiry and are here to help.
+                        </p>
+                        
+                        <form id="contact-form" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="form-group">
+                                    <input type="text" id="firstName" name="firstName" placeholder=" " class="form-input w-full px-4 py-3 rounded-xl" required>
+                                    <label for="firstName" class="floating-label text-gray-500">First Name</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" id="lastName" name="lastName" placeholder=" " class="form-input w-full px-4 py-3 rounded-xl" required>
+                                    <label for="lastName" class="floating-label text-gray-500">Last Name</label>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <input type="email" id="email" name="email" placeholder=" " class="form-input w-full px-4 py-3 rounded-xl" required>
+                                <label for="email" class="floating-label text-gray-500">Email Address</label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <input type="tel" id="phone" name="phone" placeholder=" " class="form-input w-full px-4 py-3 rounded-xl">
+                                <label for="phone" class="floating-label text-gray-500">Phone Number (Optional)</label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <select id="subject" name="subject" class="form-input w-full px-4 py-3 rounded-xl" required>
+                                    <option value="">Select a topic...</option>
+                                    <option value="volunteer">Volunteer Opportunities</option>
+                                    <option value="partnership">Partnership Inquiry</option>
+                                    <option value="donation">Donation Information</option>
+                                    <option value="programs">Program Information</option>
+                                    <option value="media">Media & Press</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <textarea id="message" name="message" rows="5" placeholder=" " class="form-input w-full px-4 py-3 rounded-xl resize-none" required></textarea>
+                                <label for="message" class="floating-label text-gray-500">Your Message</label>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <input type="checkbox" id="newsletter" name="newsletter" class="mt-1 mr-3 text-gold focus:ring-gold">
+                                <label for="newsletter" class="text-sm text-gray-600">
+                                    I'd like to receive updates about Bright Future Initiative's programs and impact stories.
+                                </label>
+                            </div>
+                            
+                            <button type="submit" class="btn-primary w-full text-royal-blue px-8 py-4 rounded-xl text-lg font-semibold flex items-center justify-center">
+                                <i class="fas fa-paper-plane mr-3"></i>
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Contact Information & Map -->
+                <div data-aos="fade-left" class="space-y-8">
+                    <!-- Office Hours -->
+                    <div class="office-hours rounded-3xl p-8 text-white">
+                        <h3 class="text-2xl font-bold mb-6 text-royal-blue">Office Hours</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <span class="font-semibold text-royal-blue">Monday - Friday</span>
+                                <span class="text-gray-700">8:00 AM - 6:00 PM</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="font-semibold text-royal-blue">Saturday</span>
+                                <span class="text-gray-700">9:00 AM - 4:00 PM</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="font-semibold text-royal-blue">Sunday</span>
+                                <span class="text-gray-700">Closed</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 p-4 bg-white/20 rounded-2xl">
+                            <h4 class="font-bold text-royal-blue mb-2">Emergency Contact</h4>
+                            <p class="text-gray-700 text-sm">For urgent matters outside office hours, please call our emergency line:</p>
+                            <a href="tel:+254720286453" class="text-royal-blue font-bold">+254 720 286 453</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Location Map -->
+                    <div class="map-container">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-white mb-4">Our Location</h3>
+                            <div class="map-placeholder">
+                                <div class="text-center text-white">
+                                    <i class="fas fa-map-marker-alt text-6xl text-gold mb-4"></i>
+                                    <h4 class="text-xl font-bold mb-2">Kenya</h4>
+                                    <p class="text-gray-200">Serving communities nationwide</p>
+                                    <button class="btn-secondary mt-4 px-6 py-2 rounded-full">
+                                        <i class="fas fa-directions mr-2"></i>
+                                        Get Directions
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Contact Info -->
+                    <div class="bg-white rounded-3xl p-8 shadow-lg">
+                        <h3 class="text-2xl font-bold text-royal-blue mb-6">Quick Contact</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-gold rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-phone text-royal-blue"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-royal-blue">Phone</p>
+                                    <a href="tel:+254720286453" class="text-gray-600 hover:text-gold transition-colors">+254 720 286 453</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-gold rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-envelope text-royal-blue"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-royal-blue">Email</p>
+                                    <a href="mailto:info@brightfutureinitiative.org" class="text-gray-600 hover:text-gold transition-colors">info@brightfutureinitiative.org</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-gold rounded-full flex items-center justify-center mr-4">
+                                    <i class="fab fa-whatsapp text-royal-blue"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-royal-blue">WhatsApp</p>
+                                    <a href="https://wa.me/254720286453" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gold transition-colors">+254 720 286 453</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="bg-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-royal-blue mb-4">
+                    Frequently Asked <span class="gold-accent">Questions</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Quick answers to common questions about our programs, volunteering, and how to get involved.
+                </p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="space-y-6">
+                    <div data-aos="fade-up" data-aos-delay="100" class="bg-gray-50 rounded-2xl p-6">
+                        <button class="faq-toggle w-full text-left flex items-center justify-between">
+                            <h3 class="text-xl font-bold text-royal-blue">How can I volunteer with Bright Future Initiative?</h3>
+                            <i class="fas fa-chevron-down text-gold transition-transform"></i>
+                        </button>
+                        <div class="faq-content hidden mt-4 text-gray-600">
+                            <p>We welcome volunteers from all backgrounds! You can get involved through our mentorship programs, community outreach activities, or skills development workshops. Contact us to discuss opportunities that match your interests and availability.</p>
+                        </div>
+                    </div>
+                    
+                    <div data-aos="fade-up" data-aos-delay="200" class="bg-gray-50 rounded-2xl p-6">
+                        <button class="faq-toggle w-full text-left flex items-center justify-between">
+                            <h3 class="text-xl font-bold text-royal-blue">What areas do you serve in Kenya?</h3>
+                            <i class="fas fa-chevron-down text-gold transition-transform"></i>
+                        </button>
+                        <div class="faq-content hidden mt-4 text-gray-600">
+                            <p>We currently serve 75 communities across 8 counties in Kenya, including Nairobi, Kiambu, Machakos, and Nakuru. Our programs reach both urban and rural areas, with a focus on underserved communities.</p>
+                        </div>
+                    </div>
+                    
+                    <div data-aos="fade-up" data-aos-delay="300" class="bg-gray-50 rounded-2xl p-6">
+                        <button class="faq-toggle w-full text-left flex items-center justify-between">
+                            <h3 class="text-xl font-bold text-royal-blue">How are donations used?</h3>
+                            <i class="fas fa-chevron-down text-gold transition-transform"></i>
+                        </button>
+                        <div class="faq-content hidden mt-4 text-gray-600">
+                            <p>Your donations directly support our three core programs: Youth Mentorship (45%), Community Outreach (35%), and Skills Development (20%). We maintain full transparency with quarterly impact reports showing exactly how funds are utilized.</p>
+                        </div>
+                    </div>
+                    
+                    <div data-aos="fade-up" data-aos-delay="400" class="bg-gray-50 rounded-2xl p-6">
+                        <button class="faq-toggle w-full text-left flex items-center justify-between">
+                            <h3 class="text-xl font-bold text-royal-blue">Can organizations partner with you?</h3>
+                            <i class="fas fa-chevron-down text-gold transition-transform"></i>
+                        </button>
+                        <div class="faq-content hidden mt-4 text-gray-600">
+                            <p>Absolutely! We actively seek partnerships with businesses, NGOs, government agencies, and educational institutions. Partnership opportunities include program sponsorship, skill-sharing, resource provision, and collaborative community projects.</p>
+                        </div>
+                    </div>
+                    
+                    <div data-aos="fade-up" data-aos-delay="500" class="bg-gray-50 rounded-2xl p-6">
+                        <button class="faq-toggle w-full text-left flex items-center justify-between">
+                            <h3 class="text-xl font-bold text-royal-blue">How do I apply for your programs?</h3>
+                            <i class="fas fa-chevron-down text-gold transition-transform"></i>
+                        </button>
+                        <div class="faq-content hidden mt-4 text-gray-600">
+                            <p>Program applications are accepted year-round through our community coordinators or by contacting us directly. We assess applications based on need, commitment, and program capacity. Priority is given to individuals from underserved communities.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="bg-royal-blue py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-white mb-6">
+                    Ready to Make a <span class="text-gold">Difference?</span>
+                </h2>
+                <p class="text-xl text-gray-200 max-w-3xl mx-auto mb-8">
+                    Whether you want to volunteer, donate, or partner with us, every action creates positive change in our communities.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button class="btn-primary text-royal-blue px-8 py-4 rounded-full text-lg font-semibold">
+                        <i class="fas fa-heart mr-2"></i>
+                        Start Your Journey
+                    </button>
+                    <button class="btn-secondary px-8 py-4 rounded-full text-lg font-semibold">
+                        <i class="fas fa-phone mr-2"></i>
+                        Call Us Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-gold">Bright Future Initiative</h3>
+                    <p class="text-gray-400 mb-4">
+                        Empowering communities through mentorship, outreach, and youth development programs across Kenya.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-gold transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-gold transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-gold transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-gold transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-gold">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="about.html" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="programs.html" class="hover:text-white transition-colors">Programs</a></li>
+                        <li><a href="impact.html" class="hover:text-white transition-colors">Impact</a></li>
+                        <li><a href="contact.html" class="hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-gold">Get Involved</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Volunteer</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Donate</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Partner with Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Sponsor a Program</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-gold">Contact Info</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><i class="fas fa-phone mr-2"></i>+254720286453</li>
+                        <li><i class="fab fa-whatsapp mr-2"></i>+254720286453</li>
+                        <li><i class="fas fa-envelope mr-2"></i>info@brightfutureinitiative.org</li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i>Kenya</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="section-divider my-8"></div>
+            
+            <div class="text-center text-gray-400">
+                <p>&copy; 2024 Bright Future Initiative. All rights reserved. Built with ❤️ for our community.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating CTA -->
+    <div class="floating-cta">
+        <a href="https://wa.me/254720286453" target="_blank" rel="noopener noreferrer" class="btn-primary text-royal-blue px-6 py-3 rounded-full shadow-lg flex items-center">
+            <i class="fab fa-whatsapp mr-2"></i>
+            Chat Now
+        </a>
+    </div>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on links
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('bg-white/95', 'backdrop-blur-sm');
+            } else {
+                nav.classList.remove('bg-white/95', 'backdrop-blur-sm');
+            }
+        });
+
+        // Contact form handling
+        const contactForm = document.getElementById('contact-form');
+        const successMessage = document.getElementById('success-message');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simulate form submission
+            const formData = new FormData(contactForm);
+            const formObject = {};
+            formData.forEach((value, key) => {
+                formObject[key] = value;
+            });
+            
+            // Show success message
+            successMessage.classList.add('show');
+            
+            // Reset form
+            contactForm.reset();
+            
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                successMessage.classList.remove('show');
+            }, 5000);
+            
+            console.log('Form submitted:', formObject);
+        });
+
+        // FAQ toggle functionality
+        const faqToggles = document.querySelectorAll('.faq-toggle');
+        
+        faqToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const content = toggle.nextElementSibling;
+                const icon = toggle.querySelector('i');
+                
+                // Close all other FAQs
+                faqToggles.forEach(otherToggle => {
+                    if (otherToggle !== toggle) {
+                        const otherContent = otherToggle.nextElementSibling;
+                        const otherIcon = otherToggle.querySelector('i');
+                        otherContent.classList.add('hidden');
+                        otherIcon.style.transform = 'rotate(0deg)';
+                    }
+                });
+                
+                // Toggle current FAQ
+                content.classList.toggle('hidden');
+                if (content.classList.contains('hidden')) {
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            });
+        });
+
+        // Form input focus effects
+        const formInputs = document.querySelectorAll('.form-input');
+        
+        formInputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.classList.add('focused');
+            });
+            
+            input.addEventListener('blur', () => {
+                if (!input.value) {
+                    input.parentElement.classList.remove('focused');
+                }
+            });
+            
+            // Check if input has value on page load
+            if (input.value) {
+                input.parentElement.classList.add('focused');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add loading state to form submission
+        contactForm.addEventListener('submit', function(e) {
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, 2000);
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'990c8df836b28a67',t:'MTc2MDgzNzg5Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
