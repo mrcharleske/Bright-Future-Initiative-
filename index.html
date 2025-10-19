@@ -105,6 +105,20 @@
             height: 1px;
             background: linear-gradient(90deg, transparent, #e5e7eb, transparent);
         }
+        
+        .testimonials-carousel {
+            position: relative;
+        }
+        
+        .testimonials-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        
+        .testimonial-slide {
+            width: 100%;
+            flex-shrink: 0;
+        }
     </style>
 </head>
 <body class="font-sans">
@@ -376,40 +390,203 @@
                 </p>
             </div>
             
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-                <div data-aos="fade-right">
-                    <div class="bg-white rounded-2xl p-8 shadow-lg">
-                        <div class="flex items-center mb-6">
-                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mr-4">
-                                <i class="fas fa-quote-left text-2xl text-green-600"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-900">Sarah Wanjiku</h4>
-                                <p class="text-gray-600">Program Beneficiary</p>
+            <!-- Testimonials Carousel -->
+            <div class="relative mb-16" data-aos="fade-up">
+                <div class="testimonials-carousel overflow-hidden rounded-3xl">
+                    <div class="testimonials-track flex transition-transform duration-500 ease-in-out">
+                        <!-- Testimonial 1 -->
+                        <div class="testimonial-slide w-full flex-shrink-0">
+                            <div class="bg-white rounded-2xl p-8 shadow-lg mx-4">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-20 h-20 rounded-full overflow-hidden mr-6 flex-shrink-0">
+                                        <svg class="w-full h-full" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect width="100" height="100" fill="#10B981"/>
+                                            <circle cx="50" cy="35" r="15" fill="white"/>
+                                            <path d="M25 85 Q50 65 75 85" stroke="white" stroke-width="8" fill="none"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xl font-bold text-gray-900">Sarah Wanjiku</h4>
+                                        <p class="text-gray-600 mb-2">Program Beneficiary</p>
+                                        <div class="flex text-yellow-400">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700 text-lg leading-relaxed italic">
+                                    "The mentorship program changed my life completely. I went from having no direction to starting my own business and now I'm mentoring other young people in my community."
+                                </p>
                             </div>
                         </div>
-                        <p class="text-gray-700 italic leading-relaxed">
-                            "The mentorship program changed my life completely. I went from having no direction to starting my own business and now I'm mentoring other young people in my community."
-                        </p>
+                        
+                        <!-- Testimonial 2 -->
+                        <div class="testimonial-slide w-full flex-shrink-0">
+                            <div class="bg-white rounded-2xl p-8 shadow-lg mx-4">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-20 h-20 rounded-full overflow-hidden mr-6 flex-shrink-0">
+                                        <svg class="w-full h-full" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect width="100" height="100" fill="#3B82F6"/>
+                                            <circle cx="50" cy="35" r="15" fill="white"/>
+                                            <path d="M25 85 Q50 65 75 85" stroke="white" stroke-width="8" fill="none"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xl font-bold text-gray-900">James Mwangi</h4>
+                                        <p class="text-gray-600 mb-2">Community Leader</p>
+                                        <div class="flex text-yellow-400">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700 text-lg leading-relaxed italic">
+                                    "Bright Future Initiative has brought hope to our community. Their outreach programs have touched so many lives and created lasting positive change."
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- Testimonial 3 -->
+                        <div class="testimonial-slide w-full flex-shrink-0">
+                            <div class="bg-white rounded-2xl p-8 shadow-lg mx-4">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-20 h-20 rounded-full overflow-hidden mr-6 flex-shrink-0">
+                                        <svg class="w-full h-full" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect width="100" height="100" fill="#8B5CF6"/>
+                                            <circle cx="50" cy="35" r="15" fill="white"/>
+                                            <path d="M25 85 Q50 65 75 85" stroke="white" stroke-width="8" fill="none"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xl font-bold text-gray-900">Grace Njeri</h4>
+                                        <p class="text-gray-600 mb-2">Youth Empowerment Graduate</p>
+                                        <div class="flex text-yellow-400">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700 text-lg leading-relaxed italic">
+                                    "Through the digital literacy program, I learned skills that helped me get my first job. Now I'm supporting my family and have hope for the future."
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- Testimonial 4 -->
+                        <div class="testimonial-slide w-full flex-shrink-0">
+                            <div class="bg-white rounded-2xl p-8 shadow-lg mx-4">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-20 h-20 rounded-full overflow-hidden mr-6 flex-shrink-0">
+                                        <svg class="w-full h-full" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect width="100" height="100" fill="#EF4444"/>
+                                            <circle cx="50" cy="35" r="15" fill="white"/>
+                                            <path d="M25 85 Q50 65 75 85" stroke="white" stroke-width="8" fill="none"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xl font-bold text-gray-900">Peter Kamau</h4>
+                                        <p class="text-gray-600 mb-2">Former Beneficiary, Now Volunteer</p>
+                                        <div class="flex text-yellow-400">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700 text-lg leading-relaxed italic">
+                                    "I was once where these young people are now. The organization gave me a second chance, and now I'm proud to give back to my community."
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- Testimonial 5 -->
+                        <div class="testimonial-slide w-full flex-shrink-0">
+                            <div class="bg-white rounded-2xl p-8 shadow-lg mx-4">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-20 h-20 rounded-full overflow-hidden mr-6 flex-shrink-0">
+                                        <svg class="w-full h-full" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect width="100" height="100" fill="#F59E0B"/>
+                                            <circle cx="50" cy="35" r="15" fill="white"/>
+                                            <path d="M25 85 Q50 65 75 85" stroke="white" stroke-width="8" fill="none"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xl font-bold text-gray-900">Mary Wambui</h4>
+                                        <p class="text-gray-600 mb-2">Parent & Community Member</p>
+                                        <div class="flex text-yellow-400">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700 text-lg leading-relaxed italic">
+                                    "My children have benefited so much from the youth programs. They've gained confidence, skills, and most importantly, they believe in themselves now."
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- Testimonial 6 -->
+                        <div class="testimonial-slide w-full flex-shrink-0">
+                            <div class="bg-white rounded-2xl p-8 shadow-lg mx-4">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-20 h-20 rounded-full overflow-hidden mr-6 flex-shrink-0">
+                                        <svg class="w-full h-full" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect width="100" height="100" fill="#06B6D4"/>
+                                            <circle cx="50" cy="35" r="15" fill="white"/>
+                                            <path d="M25 85 Q50 65 75 85" stroke="white" stroke-width="8" fill="none"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xl font-bold text-gray-900">David Ochieng</h4>
+                                        <p class="text-gray-600 mb-2">Entrepreneur & Mentor</p>
+                                        <div class="flex text-yellow-400">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700 text-lg leading-relaxed italic">
+                                    "Being a mentor with Bright Future Initiative has been incredibly rewarding. Watching young people discover their potential and achieve their dreams is priceless."
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
-                <div data-aos="fade-left">
-                    <div class="bg-white rounded-2xl p-8 shadow-lg">
-                        <div class="flex items-center mb-6">
-                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                                <i class="fas fa-quote-left text-2xl text-blue-600"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-900">James Mwangi</h4>
-                                <p class="text-gray-600">Community Leader</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-700 italic leading-relaxed">
-                            "Bright Future Initiative has brought hope to our community. Their outreach programs have touched so many lives and created lasting positive change."
-                        </p>
-                    </div>
+                <!-- Navigation Dots -->
+                <div class="flex justify-center mt-8 space-x-2">
+                    <button class="carousel-dot w-3 h-3 rounded-full bg-green-600 transition-all duration-300" data-slide="0"></button>
+                    <button class="carousel-dot w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-400 transition-all duration-300" data-slide="1"></button>
+                    <button class="carousel-dot w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-400 transition-all duration-300" data-slide="2"></button>
+                    <button class="carousel-dot w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-400 transition-all duration-300" data-slide="3"></button>
+                    <button class="carousel-dot w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-400 transition-all duration-300" data-slide="4"></button>
+                    <button class="carousel-dot w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-400 transition-all duration-300" data-slide="5"></button>
                 </div>
+                
+                <!-- Navigation Arrows -->
+                <button class="carousel-prev absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-green-600 hover:shadow-xl transition-all duration-300">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-next absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-green-600 hover:shadow-xl transition-all duration-300">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
             
             <!-- Call to Action -->
@@ -487,7 +664,7 @@
                                 <a href="#" class="w-10 h-10 bg-blue-400 rounded-full flex items-center justify-center text-white hover:bg-blue-500 transition-colors">
                                     <i class="fab fa-twitter"></i>
                                 </a>
-                                <a href="#" class="w-10 h-10 bg-pink-600 rounded-full flex items-center justify-center text-white hover:bg-pink-700 transition-colors">
+                                <a href="#" class="w-10 h-10 bg-pink-600 rounded-full flex items-center justify-center text-white hover:bg-blue-700 transition-colors">
                                     <i class="fab fa-instagram"></i>
                                 </a>
                                 <a href="#" class="w-10 h-10 bg-blue-800 rounded-full flex items-center justify-center text-white hover:bg-blue-900 transition-colors">
@@ -725,6 +902,91 @@
                 nav.classList.remove('bg-white/95', 'backdrop-blur-sm');
             }
         });
+
+        // Testimonials Carousel
+        class TestimonialsCarousel {
+            constructor() {
+                this.currentSlide = 0;
+                this.totalSlides = 6;
+                this.track = document.querySelector('.testimonials-track');
+                this.dots = document.querySelectorAll('.carousel-dot');
+                this.prevBtn = document.querySelector('.carousel-prev');
+                this.nextBtn = document.querySelector('.carousel-next');
+                this.carousel = document.querySelector('.testimonials-carousel');
+                this.autoPlayInterval = null;
+                this.isPlaying = true;
+                
+                this.init();
+            }
+            
+            init() {
+                // Add event listeners
+                this.prevBtn.addEventListener('click', () => this.prevSlide());
+                this.nextBtn.addEventListener('click', () => this.nextSlide());
+                
+                this.dots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => this.goToSlide(index));
+                });
+                
+                // Pause on hover
+                this.carousel.addEventListener('mouseenter', () => this.pauseAutoPlay());
+                this.carousel.addEventListener('mouseleave', () => this.startAutoPlay());
+                
+                // Start auto play
+                this.startAutoPlay();
+            }
+            
+            updateSlide() {
+                const translateX = -this.currentSlide * 100;
+                this.track.style.transform = `translateX(${translateX}%)`;
+                
+                // Update dots
+                this.dots.forEach((dot, index) => {
+                    if (index === this.currentSlide) {
+                        dot.classList.remove('bg-gray-300');
+                        dot.classList.add('bg-green-600');
+                    } else {
+                        dot.classList.remove('bg-green-600');
+                        dot.classList.add('bg-gray-300');
+                    }
+                });
+            }
+            
+            nextSlide() {
+                this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
+                this.updateSlide();
+            }
+            
+            prevSlide() {
+                this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
+                this.updateSlide();
+            }
+            
+            goToSlide(index) {
+                this.currentSlide = index;
+                this.updateSlide();
+            }
+            
+            startAutoPlay() {
+                if (this.isPlaying) {
+                    this.autoPlayInterval = setInterval(() => {
+                        this.nextSlide();
+                    }, 5000);
+                }
+            }
+            
+            pauseAutoPlay() {
+                if (this.autoPlayInterval) {
+                    clearInterval(this.autoPlayInterval);
+                    this.autoPlayInterval = null;
+                }
+            }
+        }
+        
+        // Initialize carousel when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            new TestimonialsCarousel();
+        });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'990c3ffa608a8a67',t:'MTc2MDgzNDY5OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'990c4b4d92c58a67',t:'MTc2MDgzNTE2MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
