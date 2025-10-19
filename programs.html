@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programs - Bright Future Initiative</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'royal-blue': '#1e3a8a',
+                        'navy-blue': '#1e40af',
+                        'light-blue': '#3b82f6',
+                        'gold': '#fbbf24',
+                        'dark-gold': '#f59e0b',
+                        'light-gold': '#fde047'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #1e3a8a 100%);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(251, 191, 36, 0.3);
+        }
+        
+        .btn-secondary {
+            border: 2px solid #fbbf24;
+            color: #fbbf24;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: #fbbf24;
+            color: #1e3a8a;
+            transform: translateY(-2px);
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background-color: #fbbf24;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+            left: 0;
+        }
+        
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .floating-cta {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #e5e7eb, transparent);
+        }
+        
+        .gold-accent {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .program-feature {
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .program-feature::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.25rem;
+            width: 0.5rem;
+            height: 0.5rem;
+            background: #fbbf24;
+            border-radius: 50%;
+        }
+        
+        .impact-number {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body class="font-sans">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <h1 class="text-2xl font-bold text-royal-blue">Bright Future Initiative</h1>
+                    </div>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="nav-link text-gray-700 hover:text-royal-blue px-3 py-2 text-sm font-medium">Home</a>
+                        <a href="about.html" class="nav-link text-gray-700 hover:text-royal-blue px-3 py-2 text-sm font-medium">About</a>
+                        <a href="programs.html" class="nav-link text-royal-blue font-semibold px-3 py-2 text-sm">Programs</a>
+                        <a href="impact.html" class="nav-link text-gray-700 hover:text-royal-blue px-3 py-2 text-sm font-medium">Impact</a>
+                        <a href="contact.html" class="nav-link text-gray-700 hover:text-royal-blue px-3 py-2 text-sm font-medium">Contact</a>
+                        <button class="btn-primary text-royal-blue px-6 py-2 rounded-full text-sm font-medium">Donate Now</button>
+                    </div>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-royal-blue focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu md:hidden fixed top-16 right-0 w-64 h-full bg-white shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-royal-blue">Home</a>
+                <a href="about.html" class="block px-3 py-2 text-gray-700 hover:text-royal-blue">About</a>
+                <a href="programs.html" class="block px-3 py-2 text-royal-blue font-semibold">Programs</a>
+                <a href="impact.html" class="block px-3 py-2 text-gray-700 hover:text-royal-blue">Impact</a>
+                <a href="contact.html" class="block px-3 py-2 text-gray-700 hover:text-royal-blue">Contact</a>
+                <button class="btn-primary text-royal-blue px-6 py-2 rounded-full text-sm font-medium ml-3 mt-4">Donate Now</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg py-20 pt-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center" data-aos="fade-up">
+                <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
+                    Our <span class="text-gold">Programs</span>
+                </h1>
+                <p class="text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
+                    Comprehensive initiatives designed to empower individuals, strengthen communities, and create lasting positive change across Kenya through mentorship, education, and sustainable development.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Overview -->
+    <section class="bg-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-royal-blue mb-4">
+                    Transforming <span class="gold-accent">Lives</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Our programs are built on the foundation of community partnership, sustainable development, and measurable impact. Each initiative is designed to address specific needs while fostering long-term growth.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div data-aos="fade-up" data-aos-delay="100" class="text-center">
+                    <div class="w-20 h-20 bg-gold rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-users text-3xl text-royal-blue"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-royal-blue mb-4">Community-Centered</h3>
+                    <p class="text-gray-600">
+                        Every program is developed in partnership with local communities to ensure relevance and sustainability.
+                    </p>
+                </div>
+                
+                <div data-aos="fade-up" data-aos-delay="200" class="text-center">
+                    <div class="w-20 h-20 bg-royal-blue rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-chart-line text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-royal-blue mb-4">Evidence-Based</h3>
+                    <p class="text-gray-600">
+                        Regular monitoring and evaluation ensure our programs deliver real, measurable impact for participants.
+                    </p>
+                </div>
+                
+                <div data-aos="fade-up" data-aos-delay="300" class="text-center">
+                    <div class="w-20 h-20 bg-gold rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-seedling text-3xl text-royal-blue"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-royal-blue mb-4">Sustainable</h3>
+                    <p class="text-gray-600">
+                        Designed for long-term impact, our programs build local capacity and create lasting positive change.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Youth Mentorship Program -->
+    <section id="mentorship" class="bg-gray-50 py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-gold to-dark-gold rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-user-friends text-2xl text-white"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-3xl font-bold text-royal-blue">Youth Mentorship</h2>
+                            <p class="text-gray-600">Guiding the next generation</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                        Our flagship mentorship program pairs young people with experienced mentors who provide guidance, support, and encouragement as they navigate life's challenges and opportunities.
+                    </p>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="program-feature">
+                            <h4 class="font-semibold text-royal-blue mb-2">One-on-One Mentoring</h4>
+                            <p class="text-gray-600">Personalized guidance tailored to each individual's goals and challenges.</p>
+                        </div>
+                        
+                        <div class="program-feature">
+                            <h4 class="font-semibold text-royal-blue mb-2">Group Sessions</h4>
+                            <p class="text-gray-600">Peer learning opportunities and community building activities.</p>
+                        </div>
+                        
+                        <div class="program-feature">
+                            <h4 class="font-semibold text-royal-blue mb-2">Life Skills Training</h4>
+                            <p class="text-gray-600">Essential skills for personal development and future success.</p>
+                        </div>
+                        
+                        <div class="program-feature">
+                            <h4 class="font-semibold text-royal-blue mb-2">Goal Setting & Achievement</h4>
+                            <p class="text-gray-600">Structured approach to identifying and reaching personal objectives.</p>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-primary text-royal-blue px-6 py-3 rounded-full font-semibold mr-4">
+                        Join as Mentee
+                    </button>
+                    <button class="btn-secondary px-6 py-3 rounded-full font-semibold">
+                        Become a Mentor
+                    </button>
+                </div>
+                
+                <div data-aos="fade-left">
+                    <div class="bg-gradient-to-br from-royal-blue to-navy-blue rounded-3xl p-8 text-white">
+                        <h3 class="text-2xl font-bold mb-6 text-gold">Program Impact</h3>
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-gold mb-2">500+</div>
+                                <p class="text-gray-200">Youth Mentored</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-gold mb-2">85%</div>
+                                <p class="text-gray-200">Success Rate</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-gold mb-2">150+</div>
+                                <p class="text-gray-200">Active Mentors</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-gold mb-2">6</div>
+                                <p class="text-gray-200">Years Running</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 p-4 bg-white/10 rounded-2xl">
+                            <h4 class="font-semibold mb-2 text-gold">Success Story</h4>
+                            <p class="text-sm text-gray-200">
+                                "Through the mentorship program, I gained confidence and direction. My mentor helped me start my own business, and now I'm mentoring others too!" - Sarah M.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Outreach Program -->
+    <section id="outreach" class="bg-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-left" class="order-2 lg:order-1">
+                    <div class="bg-gradient-to-br from-gold to-dark-gold rounded-3xl p-8 text-white">
+                        <h3 class="text-2xl font-bold mb-6 text-royal-blue">Outreach Locations</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-royal-blue rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-home text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-royal-blue">Orphanages</h4>
+                                    <p class="text-sm text-gray-700">Supporting children in care facilities</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-royal-blue rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-shield-alt text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-royal-blue">Correctional Facilities</h4>
+                                    <p class="text-sm text-gray-700">Rehabilitation and reintegration support</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-royal-blue rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-map-marker-alt text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-royal-blue">Rural Communities</h4>
+                                    <p class="text-sm text-gray-700">Reaching underserved areas</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-royal-blue rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-city text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-royal-blue">Urban Centers</h4>
+                                    <p class="text-sm text-gray-700">Supporting city communities</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 text-center">
+                            <div class="text-3xl font-bold text-royal-blue mb-2">50+</div>
+                            <p class="text-gray-700">Communities Served</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-right" class="order-1 lg:order-2">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-royal-blue to-navy-blue rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-hands-helping text-2xl text-white"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-3xl font-bold text-royal-blue">Community Outreach</h2>
+                            <p class="text-gray-600">Building lasting relationships</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                        Our community outreach program focuses on building meaningful relationships and providing consistent support to various communities across Kenya, including orphanages, correctional facilities, and underserved areas.
+                    </p>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="program-feature">
+                            <h4 class="font-semibold text-royal-blue mb-2">Regular Visits</h4>
+                            <p class="text-gray-600">Consistent presence and relationship building in communities.</p>
+                        </div>
+                        
+                        <div class="program-feature">
+                            <h4 class="font-semibold text-royal-blue mb-2">Resource Provision</h4>
+                            <p class="text-gray-600">Supplying essential items and educational materials.</p>
+                        </div>
+                        
+                        <div class="program-feature">
+                            <h4 class="font-semibold text-royal-blue mb-2">Emotional Support</h4>
+                            <p class="text-gray-600">Counseling and encouragement for individuals facing challenges.</p>
+                        </div>
+                        
+                        <div class="program-feature">
+                            <h4 class="font-semibold text-royal-blue mb-2">Community Events</h4>
+                            <p class="text-gray-600">Organizing activities that bring communities together.</p>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-primary text-royal-blue px-6 py-3 rounded-full font-semibold mr-4">
+                        Join Outreach
+                    </button>
+                    <button class="btn-secondary px-6 py-3 rounded-full font-semibold">
+                        Sponsor a Visit
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Development Program -->
+    <section id="skills" class="bg-gray-50 py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-black to-gray-800 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-graduation-cap text-2xl text-white"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-3xl font-bold text-royal-blue">Skills Development</h2>
+                            <p class="text-gray-600">Building economic opportunities</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                        Our skills development program equips individuals with practical, marketable skills that create economic opportunities and promote self-reliance within their communities.
+                    </p>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="program-feature">
+                            <h4 class="font-semibold text-royal-blue mb-2">Digital Literacy</h4>
+                            <p class="text-gray-600">Computer skills, internet usage, and digital communication.</p>
+                        </div>
+                        
+                        <div class="program-feature">
+                            <h4 class="font-semibold text-royal-blue mb-2">Entrepreneurship Training</h4>
+                            <p class="text-gray-600">Business planning, financial management, and startup support.</p>
+                        </div>
+                        
+                        <div class="program-feature">
+                            <h4 class="font-semibold text-royal-blue mb-2">Vocational Skills</h4>
+                            <p class="text-gray-600">Practical trades and crafts that generate income.</p>
+                        </div>
+                        
+                        <div class="program-feature">
+                            <h4 class="font-semibold text-royal-blue mb-2">Financial Literacy</h4>
+                            <p class="text-gray-600">Money management, savings, and investment education.</p>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-primary text-royal-blue px-6 py-3 rounded-full font-semibold mr-4">
+                        Enroll Now
+                    </button>
+                    <button class="btn-secondary px-6 py-3 rounded-full font-semibold">
+                        Become Instructor
+                    </button>
+                </div>
+                
+                <div data-aos="fade-left">
+                    <div class="bg-gradient-to-br from-royal-blue to-navy-blue rounded-3xl p-8 text-white">
+                        <h3 class="text-2xl font-bold mb-6 text-gold">Skills Offered</h3>
+                        <div class="grid grid-cols-1 gap-4">
+                            <div class="bg-white/10 rounded-xl p-4">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-laptop text-gold mr-3"></i>
+                                    <h4 class="font-semibold">Digital Skills</h4>
+                                </div>
+                                <p class="text-sm text-gray-200">Computer literacy, online marketing, social media management</p>
+                            </div>
+                            
+                            <div class="bg-white/10 rounded-xl p-4">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-store text-gold mr-3"></i>
+                                    <h4 class="font-semibold">Business Skills</h4>
+                                </div>
+                                <p class="text-sm text-gray-200">Entrepreneurship, business planning, customer service</p>
+                            </div>
+                            
+                            <div class="bg-white/10 rounded-xl p-4">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-tools text-gold mr-3"></i>
+                                    <h4 class="font-semibold">Technical Skills</h4>
+                                </div>
+                                <p class="text-sm text-gray-200">Tailoring, carpentry, electrical work, plumbing</p>
+                            </div>
+                            
+                            <div class="bg-white/10 rounded-xl p-4">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-seedling text-gold mr-3"></i>
+                                    <h4 class="font-semibold">Agricultural Skills</h4>
+                                </div>
+                                <p class="text-sm text-gray-200">Modern farming, livestock management, agribusiness</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 text-center">
+                            <div class="text-3xl font-bold text-gold mb-2">200+</div>
+                            <p class="text-gray-200">Skills Graduates</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Impact -->
+    <section class="bg-royal-blue py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-white mb-4">
+                    Program <span class="text-gold">Impact</span>
+                </h2>
+                <p class="text-xl text-gray-200 max-w-3xl mx-auto">
+                    Measuring our success through the positive changes we create in individuals and communities.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div data-aos="fade-up" data-aos-delay="100" class="text-center">
+                    <div class="impact-number mb-2 text-gold">1000+</div>
+                    <h3 class="text-lg font-semibold text-white mb-2">Total Participants</h3>
+                    <p class="text-gray-300 text-sm">Across all programs</p>
+                </div>
+                
+                <div data-aos="fade-up" data-aos-delay="200" class="text-center">
+                    <div class="impact-number mb-2 text-gold">90%</div>
+                    <h3 class="text-lg font-semibold text-white mb-2">Completion Rate</h3>
+                    <p class="text-gray-300 text-sm">Program success rate</p>
+                </div>
+                
+                <div data-aos="fade-up" data-aos-delay="300" class="text-center">
+                    <div class="impact-number mb-2 text-gold">75%</div>
+                    <h3 class="text-lg font-semibold text-white mb-2">Employment Rate</h3>
+                    <p class="text-gray-300 text-sm">Post-program employment</p>
+                </div>
+                
+                <div data-aos="fade-up" data-aos-delay="400" class="text-center">
+                    <div class="impact-number mb-2 text-gold">50+</div>
+                    <h3 class="text-lg font-semibold text-white mb-2">New Businesses</h3>
+                    <p class="text-gray-300 text-sm">Started by graduates</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Join -->
+    <section class="bg-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-royal-blue mb-4">
+                    How to <span class="gold-accent">Join</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Getting involved in our programs is simple. Follow these steps to start your journey with us.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div data-aos="fade-up" data-aos-delay="100" class="text-center">
+                    <div class="w-20 h-20 bg-gold rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-2xl font-bold text-royal-blue">1</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-royal-blue mb-4">Apply</h3>
+                    <p class="text-gray-600 mb-6">
+                        Fill out our simple application form or contact us directly to express your interest in joining our programs.
+                    </p>
+                    <button class="btn-primary text-royal-blue px-6 py-3 rounded-full font-semibold">
+                        Apply Now
+                    </button>
+                </div>
+                
+                <div data-aos="fade-up" data-aos-delay="200" class="text-center">
+                    <div class="w-20 h-20 bg-royal-blue rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-2xl font-bold text-white">2</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-royal-blue mb-4">Interview</h3>
+                    <p class="text-gray-600 mb-6">
+                        Meet with our team to discuss your goals, interests, and how our programs can best support your journey.
+                    </p>
+                    <button class="btn-secondary px-6 py-3 rounded-full font-semibold">
+                        Learn More
+                    </button>
+                </div>
+                
+                <div data-aos="fade-up" data-aos-delay="300" class="text-center">
+                    <div class="w-20 h-20 bg-gold rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-2xl font-bold text-royal-blue">3</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-royal-blue mb-4">Start</h3>
+                    <p class="text-gray-600 mb-6">
+                        Begin your program journey with orientation, goal setting, and connection with mentors or instructors.
+                    </p>
+                    <button class="btn-primary text-royal-blue px-6 py-3 rounded-full font-semibold">
+                        Get Started
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories -->
+    <section class="bg-gray-50 py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-royal-blue mb-4">
+                    Success <span class="gold-accent">Stories</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Real stories from program participants who have transformed their lives and communities.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div data-aos="fade-up" data-aos-delay="100" class="bg-white rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gold rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-royal-blue"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-royal-blue">Mary K.</h4>
+                            <p class="text-sm text-gray-600">Mentorship Graduate</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        "The mentorship program gave me confidence and direction. I'm now pursuing my degree and mentoring younger students in my community."
+                    </p>
+                    <div class="flex text-gold">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-up" data-aos-delay="200" class="bg-white rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-royal-blue rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-white"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-royal-blue">John M.</h4>
+                            <p class="text-sm text-gray-600">Skills Development</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        "Learning digital marketing skills changed my life. I now run my own online business and employ three people from my community."
+                    </p>
+                    <div class="flex text-gold">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-up" data-aos-delay="300" class="bg-white rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gold rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-royal-blue"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-royal-blue">Grace W.</h4>
+                            <p class="text-sm text-gray-600">Community Outreach</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        "The regular visits and support helped me through difficult times. Now I volunteer to help others in similar situations."
+                    </p>
+                    <div class="flex text-gold">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Get Involved -->
+    <section class="bg-royal-blue py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-white mb-4">
+                    Get <span class="text-gold">Involved</span>
+                </h2>
+                <p class="text-xl text-gray-200 max-w-3xl mx-auto">
+                    Support our programs and help us reach more communities across Kenya.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div data-aos="fade-up" data-aos-delay="100" class="text-center">
+                    <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-hands-helping text-2xl text-royal-blue"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-3">Volunteer</h3>
+                    <p class="text-gray-300 text-sm mb-4">
+                        Join our team and directly impact lives in your community.
+                    </p>
+                    <button class="btn-secondary px-4 py-2 rounded-full text-sm font-semibold">
+                        Volunteer
+                    </button>
+                </div>
+                
+                <div data-aos="fade-up" data-aos-delay="200" class="text-center">
+                    <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-heart text-2xl text-royal-blue"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-3">Donate</h3>
+                    <p class="text-gray-300 text-sm mb-4">
+                        Support our programs with financial contributions.
+                    </p>
+                    <button class="btn-secondary px-4 py-2 rounded-full text-sm font-semibold">
+                        Donate
+                    </button>
+                </div>
+                
+                <div data-aos="fade-up" data-aos-delay="300" class="text-center">
+                    <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-handshake text-2xl text-royal-blue"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-3">Partner</h3>
+                    <p class="text-gray-300 text-sm mb-4">
+                        Collaborate with us to amplify our impact.
+                    </p>
+                    <button class="btn-secondary px-4 py-2 rounded-full text-sm font-semibold">
+                        Partner
+                    </button>
+                </div>
+                
+                <div data-aos="fade-up" data-aos-delay="400" class="text-center">
+                    <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-share-alt text-2xl text-royal-blue"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-3">Share</h3>
+                    <p class="text-gray-300 text-sm mb-4">
+                        Spread the word about our mission and programs.
+                    </p>
+                    <button class="btn-secondary px-4 py-2 rounded-full text-sm font-semibold">
+                        Share
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-gold">Bright Future Initiative</h3>
+                    <p class="text-gray-400 mb-4">
+                        Empowering communities through mentorship, outreach, and youth development programs across Kenya.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-gold transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-gold transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-gold transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-gold transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-gold">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="about.html" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="programs.html" class="hover:text-white transition-colors">Programs</a></li>
+                        <li><a href="impact.html" class="hover:text-white transition-colors">Impact</a></li>
+                        <li><a href="contact.html" class="hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-gold">Get Involved</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Volunteer</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Donate</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Partner with Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Sponsor a Program</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-gold">Contact Info</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><i class="fas fa-phone mr-2"></i>+254720286453</li>
+                        <li><i class="fab fa-whatsapp mr-2"></i>+254720286453</li>
+                        <li><i class="fas fa-envelope mr-2"></i>info@brightfutureinitiative.org</li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i>Kenya</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="section-divider my-8"></div>
+            
+            <div class="text-center text-gray-400">
+                <p>&copy; 2024 Bright Future Initiative. All rights reserved. Built with ❤️ for our community.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating CTA -->
+    <div class="floating-cta">
+        <button class="btn-primary text-royal-blue px-6 py-3 rounded-full shadow-lg flex items-center">
+            <i class="fas fa-heart mr-2"></i>
+            Donate
+        </button>
+    </div>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on links
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('bg-white/95', 'backdrop-blur-sm');
+            } else {
+                nav.classList.remove('bg-white/95', 'backdrop-blur-sm');
+            }
+        });
+
+        // Counter animation for impact numbers
+        function animateCounters() {
+            const counters = document.querySelectorAll('.impact-number');
+            counters.forEach(counter => {
+                const text = counter.textContent;
+                const target = parseInt(text.replace(/\D/g, ''));
+                const suffix = text.replace(/\d/g, '');
+                const increment = target / 100;
+                let current = 0;
+                
+                const updateCounter = () => {
+                    if (current < target) {
+                        current += increment;
+                        counter.textContent = Math.floor(current) + suffix;
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target + suffix;
+                    }
+                };
+                
+                updateCounter();
+            });
+        }
+
+        // Trigger counter animation when section is visible
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        const statsSection = document.querySelector('.impact-number').closest('section');
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'990c8174b2308a67',t:'MTc2MDgzNzM3OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
