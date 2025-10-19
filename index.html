@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bright Future Initiative - Transforming Communities</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e40af 0%, #059669 100%);
+        }
+        
+        .hero-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(5, 150, 105, 0.3);
+        }
+        
+        .btn-secondary {
+            border: 2px solid #059669;
+            color: #059669;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: #059669;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background-color: #059669;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+            left: 0;
+        }
+        
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        
+        .counter {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #059669;
+        }
+        
+        .floating-cta {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #e5e7eb, transparent);
+        }
+    </style>
+</head>
+<body class="font-sans">
+    <!-- Navigation -->
+    <nav class="bg-amber-50 shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <h1 class="text-2xl font-bold text-blue-700">Bright Future Initiative</h1>
+                    </div>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="nav-link text-gray-700 hover:text-blue-700 px-3 py-2 text-sm font-medium">Home</a>
+                        <a href="#about" class="nav-link text-gray-700 hover:text-blue-700 px-3 py-2 text-sm font-medium">About</a>
+                        <a href="#programs" class="nav-link text-gray-700 hover:text-blue-700 px-3 py-2 text-sm font-medium">Programs</a>
+                        <a href="#impact" class="nav-link text-gray-700 hover:text-blue-700 px-3 py-2 text-sm font-medium">Impact</a>
+                        <a href="#contact" class="nav-link text-gray-700 hover:text-blue-700 px-3 py-2 text-sm font-medium">Contact</a>
+                        <button class="btn-primary text-white px-6 py-2 rounded-full text-sm font-medium">Donate Now</button>
+                    </div>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-blue-700 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu md:hidden fixed top-16 right-0 w-64 h-full bg-amber-50 shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#home" class="block px-3 py-2 text-gray-700 hover:text-blue-700">Home</a>
+                <a href="#about" class="block px-3 py-2 text-gray-700 hover:text-blue-700">About</a>
+                <a href="#programs" class="block px-3 py-2 text-gray-700 hover:text-blue-700">Programs</a>
+                <a href="#impact" class="block px-3 py-2 text-gray-700 hover:text-blue-700">Impact</a>
+                <a href="#contact" class="block px-3 py-2 text-gray-700 hover:text-blue-700">Contact</a>
+                <button class="btn-primary text-white px-6 py-2 rounded-full text-sm font-medium ml-3 mt-4">Donate Now</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="gradient-bg hero-pattern min-h-screen flex items-center pt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <h1 class="text-4xl md:text-6xl font-bold text-yellow-100 mb-6 leading-tight drop-shadow-2xl" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">
+                        Building <span class="text-yellow-300 drop-shadow-2xl" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">Brighter Futures</span> Together
+                    </h1>
+                    <p class="text-xl text-yellow-50 mb-8 leading-relaxed drop-shadow-2xl" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.7);">
+                        Empowering communities through mentorship, outreach, and youth development programs. Join us in creating lasting positive change across Kenya.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="btn-primary text-white px-8 py-4 rounded-full text-lg font-semibold flex items-center justify-center">
+                            <i class="fas fa-heart mr-2"></i>
+                            Support Our Mission
+                        </button>
+                        <button class="btn-secondary bg-transparent text-white border-white px-8 py-4 rounded-full text-lg font-semibold flex items-center justify-center">
+                            <i class="fas fa-play mr-2"></i>
+                            Watch Our Story
+                        </button>
+                    </div>
+                </div>
+                <div data-aos="fade-left" class="relative">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20">
+                        <svg class="w-full h-80" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Community illustration -->
+                            <rect width="400" height="300" fill="url(#gradient1)"/>
+                            <circle cx="200" cy="100" r="30" fill="#FCD34D"/>
+                            <rect x="170" y="130" width="60" height="80" rx="30" fill="#3B82F6"/>
+                            <circle cx="120" cy="120" r="25" fill="#F59E0B"/>
+                            <rect x="95" y="145" width="50" height="70" rx="25" fill="#10B981"/>
+                            <circle cx="280" cy="120" r="25" fill="#EF4444"/>
+                            <rect x="255" y="145" width="50" height="70" rx="25" fill="#8B5CF6"/>
+                            <path d="M50 250 Q200 200 350 250" stroke="#FCD34D" stroke-width="4" fill="none"/>
+                            <defs>
+                                <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#1e40af;stop-opacity:0.1"/>
+                                    <stop offset="100%" style="stop-color:#059669;stop-opacity:0.1"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Stats -->
+    <section class="bg-amber-100 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+                <div data-aos="fade-up" data-aos-delay="100" class="p-6">
+                    <div class="counter" data-target="500">0</div>
+                    <p class="text-gray-600 font-semibold">Youth Mentored</p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="200" class="p-6">
+                    <div class="counter" data-target="50">0</div>
+                    <p class="text-gray-600 font-semibold">Communities Reached</p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="300" class="p-6">
+                    <div class="counter" data-target="1000">0</div>
+                    <p class="text-gray-600 font-semibold">Lives Impacted</p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="400" class="p-6">
+                    <div class="counter" data-target="25">0</div>
+                    <p class="text-gray-600 font-semibold">Programs Running</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="bg-stone-100 py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">About Bright Future Initiative</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    We are a passionate community organization dedicated to creating positive change through targeted programs that address real needs in our communities.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <div class="bg-gradient-to-br from-blue-600 to-green-600 rounded-3xl p-8 text-white">
+                        <h3 class="text-2xl font-bold mb-4">Our Mission</h3>
+                        <p class="text-lg leading-relaxed mb-6">
+                            To empower individuals and communities through comprehensive programs that foster personal growth, provide essential support, and create sustainable positive change.
+                        </p>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-bullseye text-xl"></i>
+                            </div>
+                            <span class="font-semibold">Focused Impact, Lasting Change</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left">
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-heart text-green-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-900 mb-2">Community First</h4>
+                                <p class="text-gray-600">We believe in the power of community-driven solutions and grassroots initiatives.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-hands-helping text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-900 mb-2">Sustainable Impact</h4>
+                                <p class="text-gray-600">Our programs are designed to create long-term positive change that continues to benefit communities.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-star text-yellow-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-900 mb-2">Excellence</h4>
+                                <p class="text-gray-600">We strive for excellence in everything we do, ensuring maximum impact with every initiative.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="programs" class="bg-teal-50 py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Our Programs</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Comprehensive initiatives designed to address critical needs and create meaningful change in our communities.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Mentorship Program -->
+                <div data-aos="fade-up" data-aos-delay="100" class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100">
+                    <div class="h-48 bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
+                        <i class="fas fa-user-friends text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Mentorship Programs</h3>
+                        <p class="text-gray-600 mb-4">
+                            Connecting experienced professionals with young people to provide guidance, support, and career development opportunities.
+                        </p>
+                        <ul class="text-sm text-gray-500 space-y-1 mb-4">
+                            <li>• One-on-one mentoring sessions</li>
+                            <li>• Career guidance workshops</li>
+                            <li>• Skill development programs</li>
+                            <li>• Leadership training</li>
+                        </ul>
+                        <button class="btn-primary text-white px-6 py-2 rounded-full text-sm font-medium w-full">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Community Outreach -->
+                <div data-aos="fade-up" data-aos-delay="200" class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100">
+                    <div class="h-48 bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center">
+                        <i class="fas fa-hands-helping text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Community Outreach</h3>
+                        <p class="text-gray-600 mb-4">
+                            Reaching out to vulnerable communities including orphanages, less fortunate families, and correctional facilities.
+                        </p>
+                        <ul class="text-sm text-gray-500 space-y-1 mb-4">
+                            <li>• Orphanage visits & support</li>
+                            <li>• Prison rehabilitation programs</li>
+                            <li>• Support for less fortunate</li>
+                            <li>• Community health initiatives</li>
+                        </ul>
+                        <button class="btn-primary text-white px-6 py-2 rounded-full text-sm font-medium w-full">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Youth Empowerment -->
+                <div data-aos="fade-up" data-aos-delay="300" class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100">
+                    <div class="h-48 bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center">
+                        <i class="fas fa-rocket text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Youth Empowerment</h3>
+                        <p class="text-gray-600 mb-4">
+                            Comprehensive programs designed to equip young people with skills, confidence, and opportunities for success.
+                        </p>
+                        <ul class="text-sm text-gray-500 space-y-1 mb-4">
+                            <li>• Entrepreneurship training</li>
+                            <li>• Digital literacy programs</li>
+                            <li>• Life skills workshops</li>
+                            <li>• Scholarship opportunities</li>
+                        </ul>
+                        <button class="btn-primary text-white px-6 py-2 rounded-full text-sm font-medium w-full">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section id="impact" class="bg-slate-100 py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Our Impact</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Real stories of transformation and positive change from the communities we serve.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+                <div data-aos="fade-right">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-quote-left text-2xl text-green-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">Sarah Wanjiku</h4>
+                                <p class="text-gray-600">Program Beneficiary</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 italic leading-relaxed">
+                            "The mentorship program changed my life completely. I went from having no direction to starting my own business and now I'm mentoring other young people in my community."
+                        </p>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-quote-left text-2xl text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">James Mwangi</h4>
+                                <p class="text-gray-600">Community Leader</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 italic leading-relaxed">
+                            "Bright Future Initiative has brought hope to our community. Their outreach programs have touched so many lives and created lasting positive change."
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Call to Action -->
+            <div data-aos="fade-up" class="text-center">
+                <div class="gradient-bg rounded-3xl p-12 text-white">
+                    <h3 class="text-3xl font-bold mb-4">Ready to Make a Difference?</h3>
+                    <p class="text-xl mb-8 text-blue-100">
+                        Join us in creating brighter futures for communities across Kenya. Every contribution makes a real impact.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button class="bg-white text-blue-700 px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-100 transition-colors">
+                            <i class="fas fa-donate mr-2"></i>
+                            Donate Now
+                        </button>
+                        <button class="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-blue-700 transition-colors">
+                            <i class="fas fa-volunteer mr-2"></i>
+                            Become a Volunteer
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="bg-emerald-50 py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Get In Touch</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Ready to join our mission? We'd love to hear from you. Reach out to learn more about our programs or how you can get involved.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div data-aos="fade-right">
+                    <div class="space-y-8">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-phone text-green-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-gray-900 mb-1">Phone</h4>
+                                <p class="text-gray-600">+254720286453</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fab fa-whatsapp text-green-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-gray-900 mb-1">WhatsApp</h4>
+                                <p class="text-gray-600">+254720286453</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-envelope text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-gray-900 mb-1">Email</h4>
+                                <p class="text-gray-600">info@brightfutureinitiative.org</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-blue-50 to-green-50 rounded-2xl p-6 border border-blue-100">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-3">Follow Our Journey</h4>
+                            <p class="text-gray-600 mb-4">Stay updated with our latest programs and impact stories.</p>
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white hover:bg-blue-700 transition-colors">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-blue-400 rounded-full flex items-center justify-center text-white hover:bg-blue-500 transition-colors">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-pink-600 rounded-full flex items-center justify-center text-white hover:bg-pink-700 transition-colors">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-blue-800 rounded-full flex items-center justify-center text-white hover:bg-blue-900 transition-colors">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left">
+                    <form class="bg-stone-50 rounded-2xl p-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+                                <input type="text" id="firstName" name="firstName" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label for="lastName" class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
+                            <select id="subject" name="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                                <option>General Inquiry</option>
+                                <option>Volunteer Opportunities</option>
+                                <option>Partnership</option>
+                                <option>Donation Information</option>
+                                <option>Program Information</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                            <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary text-white px-8 py-3 rounded-lg text-lg font-semibold w-full">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Bright Future Initiative</h3>
+                    <p class="text-gray-400 mb-4">
+                        Empowering communities through mentorship, outreach, and youth development programs.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Programs</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Mentorship</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Community Outreach</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Youth Empowerment</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Volunteer Program</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Get Involved</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Donate</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Volunteer</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Partner with Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Sponsor a Program</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>Phone: +254720286453</li>
+                        <li>WhatsApp: +254720286453</li>
+                        <li>Email: info@brightfutureinitiative.org</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="section-divider my-8"></div>
+            
+            <div class="text-center text-gray-400">
+                <p>&copy; 2024 Bright Future Initiative. All rights reserved. Built with ❤️ for our community.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating CTA -->
+    <div class="floating-cta">
+        <button class="btn-primary text-white px-6 py-3 rounded-full shadow-lg flex items-center">
+            <i class="fas fa-heart mr-2"></i>
+            Donate
+        </button>
+    </div>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on links
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Counter animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const increment = target / 100;
+                let current = 0;
+                
+                const updateCounter = () => {
+                    if (current < target) {
+                        current += increment;
+                        counter.textContent = Math.floor(current);
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target;
+                    }
+                };
+                
+                updateCounter();
+            });
+        }
+
+        // Trigger counter animation when section is visible
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        const statsSection = document.querySelector('.counter').closest('section');
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
+
+        // Form submission
+        const contactForm = document.querySelector('form');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Show success message
+            const button = this.querySelector('button[type="submit"]');
+            const originalText = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-check mr-2"></i>Message Sent!';
+            button.disabled = true;
+            
+            // Reset form after 3 seconds
+            setTimeout(() => {
+                this.reset();
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }, 3000);
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('bg-white/95', 'backdrop-blur-sm');
+            } else {
+                nav.classList.remove('bg-white/95', 'backdrop-blur-sm');
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'990c3ffa608a8a67',t:'MTc2MDgzNDY5OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
